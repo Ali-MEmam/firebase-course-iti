@@ -1,9 +1,45 @@
+import { useState } from "react";
+
 export const Login = () => {
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+  const [isLoginForm, setIsLoginForm] = useState(true);
+  const handleChange = (e) =>
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
   return (
     <section className="login-section">
       <div className="LoginView">
         <h3 className="LoginView-title">Chat Application</h3>
-        <button className="LoginView-button">Login With Google</button>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <input
+            placeholder="ex: email@example"
+            value={userInfo.email}
+            name="email"
+            onChange={handleChange}
+          />
+          <input
+            placeholder="******"
+            type="password"
+            value={userInfo.password}
+            name="password"
+            onChange={handleChange}
+          />
+          <button> {isLoginForm ? "Login" : "Register"}</button>
+        </form>
+        <button className="LoginView-button" onClick={() => signClient()}>
+          Login With Google
+        </button>
+        <button
+          className="create-new"
+          onClick={() => setIsLoginForm(!isLoginForm)}
+        >
+          {isLoginForm ? "Create New Account ?" : "Back to Login"}
+        </button>
       </div>
     </section>
   );
