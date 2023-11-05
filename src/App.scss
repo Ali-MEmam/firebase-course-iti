@@ -480,6 +480,8 @@ html {
     border: 1px solid #4f5c76;
     border-radius: 6px;
     margin-bottom: 10px;
+    background: #fff;
+    color: black;
   }
 }
 .create-new {
@@ -487,6 +489,7 @@ html {
   background: none;
   padding: 0px;
   margin-top: 20px;
+  color: #000;
   &:focus {
     outline: none;
   }

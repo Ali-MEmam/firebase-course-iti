@@ -1,11 +1,18 @@
+import { signOut } from "firebase/auth";
 import { ChatContent, ChatFooter, ChatTitle, FriendList } from "../components";
+import { auth, useSecondUser } from "../config";
 
 export const ChatView = () => {
+  const { secondUser } = useSecondUser();
+
+  const handleSignout = () => {
+    signOut(auth);
+  };
   return (
     <>
       <div className="header">
         <div className="user-settings">
-          <button>Logout</button>
+          <button onClick={() => handleSignout()}>Logout</button>
         </div>
       </div>
       <div className="wrapper">
@@ -13,7 +20,7 @@ export const ChatView = () => {
           <FriendList />
         </div>
         <div className="chat-area">
-          {false ? (
+          {!!secondUser?.uid ? (
             <>
               <ChatTitle />
               <ChatContent />

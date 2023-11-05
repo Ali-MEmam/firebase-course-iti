@@ -1,6 +1,8 @@
 import { useState } from "react";
-
+import { useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { auth } from "../config";
 export const Login = () => {
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
   const [userInfo, setUserInfo] = useState({
     email: "",
     password: "",
@@ -31,7 +33,7 @@ export const Login = () => {
           />
           <button> {isLoginForm ? "Login" : "Register"}</button>
         </form>
-        <button className="LoginView-button" onClick={() => signClient()}>
+        <button className="LoginView-button" onClick={() => signInWithGoogle()}>
           Login With Google
         </button>
         <button
